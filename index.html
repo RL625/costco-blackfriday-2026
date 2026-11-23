@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>好市多 2026 黑色購物節特價總整理 | 11/23–12/6</title>
+<style>
+:root {
+  --bg: #0f1115;
+  --card: #1a1d24;
+  --border: #2a2f3a;
+  --text: #e8eaed;
+  --muted: #9aa0a6;
+  --accent: #f59e0b;
+  --green: #34d399;
+  --red: #f87171;
+  --blue: #60a5fa;
+  --purple: #a78bfa;
+  --header: #12151b;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", "PingFang TC", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.45;
+  min-height: 100vh;
+}
+header {
+  background: linear-gradient(135deg, #1a1208 0%, #0f1115 60%);
+  border-bottom: 1px solid var(--border);
+  padding: 14px 16px 12px;
+  position: sticky; top: 0; z-index: 100;
+}
+.header-top {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px;
+  justify-content: space-between;
+}
+h1 {
+  font-size: 1.15rem; font-weight: 700;
+  background: linear-gradient(90deg, #fbbf24, #f59e0b);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+.badge-row { display: flex; flex-wrap: wrap; gap: 6px; }
+.badge {
+  font-size: 0.72rem; padding: 3px 8px; border-radius: 999px;
+  background: #2a2110; color: var(--accent); border: 1px solid #4a3a18;
+}
+.badge.green { background: #0f2a1f; color: var(--green); border-color: #1a4a35; }
+.badge.blue { background: #0f1f2a; color: var(--blue); border-color: #1a3a4a; }
+.info-bar {
+  margin-top: 8px; font-size: 0.78rem; color: var(--muted);
+  display: flex; flex-wrap: wrap; gap: 8px 14px;
+}
+.controls {
+  display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; align-items: center;
+}
+input[type="search"] {
+  flex: 1; min-width: 140px; max-width: 280px;
+  background: var(--card); border: 1px solid var(--border);
+  color: var(--text); padding: 8px 12px; border-radius: 8px; font-size: 0.9rem;
+}
+select, button {
+  background: var(--card); border: 1px solid var(--border);
+  color: var(--text); padding: 8px 12px; border-radius: 8px; font-size: 0.85rem; cursor: pointer;
+}
+button:hover, select:hover { border-color: var(--accent); }
+button.primary { background: #3b2a0a; border-color: var(--accent); color: var(--accent); }
+.tabs {
+  display: flex; flex-wrap: wrap; gap: 6px; margin: 12px 0 8px; padding: 0 16px;
+}
+.tab {
+  padding: 6px 12px; border-radius: 8px; font-size: 0.82rem;
+  background: var(--card); border: 1px solid var(--border); cursor: pointer;
+  color: var(--muted);
+}
+.tab.active { background: #2a2110; border-color: var(--accent); color: var(--accent); font-weight: 600; }
+.tab .count { font-size: 0.7rem; opacity: 0.8; margin-left: 4px; }
+.table-wrap {
+  overflow-x: auto; padding: 0 8px 40px; -webkit-overflow-scrolling: touch;
+}
+table {
+  width: 100%; border-collapse: collapse; font-size: 0.84rem; min-width: 900px;
+}
+th, td {
+  padding: 10px 8px; text-align: left; border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+th {
+  background: var(--header); position: sticky; top: 0; z-index: 10;
+  font-weight: 600; color: var(--muted); cursor: pointer; user-select: none;
+}
+th:hover { color: var(--accent); }
+th .sort { opacity: 0.4; font-size: 0.7rem; }
+th.sorted .sort { opacity: 1; color: var(--accent); }
+td.product { white-space: normal; max-width: 280px; min-width: 180px; }
+.brand { color: var(--blue); font-weight: 500; }
+.save {
+  font-weight: 700; color: var(--green);
+  background: #0f2a1f; padding: 2px 6px; border-radius: 4px;
+}
+.disc { color: var(--accent); font-weight: 600; }
+.orig { color: var(--muted); text-decoration: line-through; font-size: 0.8rem; }
+.price { font-weight: 700; font-size: 0.95rem; }
+.days { color: var(--purple); font-weight: 500; }
+.fav { cursor: pointer; font-size: 1.1rem; user-select: none; }
+.fav.on { color: #fbbf24; }
+.unit { font-size: 0.75rem; color: var(--muted); }
+.note { font-size: 0.72rem; color: var(--muted); max-width: 140px; white-space: normal; }
+footer {
+  text-align: center; padding: 20px 16px; font-size: 0.75rem; color: var(--muted);
+  border-top: 1px solid var(--border);
+}
+.stats {
+  display: flex; flex-wrap: wrap; gap: 10px 18px; padding: 8px 16px;
+  font-size: 0.8rem; color: var(--muted);
+}
+.stats b { color: var(--text); }
+@media (max-width: 640px) {
+  h1 { font-size: 1rem; }
+  th, td { padding: 8px 6px; font-size: 0.78rem; }
+  .product { max-width: 200px; }
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="header-top">
+    <h1>🛒 好市多 2026 黑色購物節</h1>
+    <div class="badge-row">
+      <span class="badge">11/23 – 12/6 · 14天</span>
+      <span class="badge green">700+ 項優惠</span>
+      <span class="badge blue">黑鑽 07:30 / 金星·商業 08:30</span>
+    </div>
+  </div>
+  <div class="info-bar">
+    <span>每卡限購 1 件 · 數量有限售完為止</span>
+    <span>每日 16:00 官方 FB/IG 預告隔日精選</span>
+    <span>資料來源：官方公布 + 公開媒體整理（非完整700項，持續更新）</span>
+  </div>
+  <div class="controls">
+    <input type="search" id="q" placeholder="搜尋商品 / 品牌…">
+    <select id="sort">
+      <option value="save-desc">省最多 ↑</option>
+      <option value="disc-desc">折扣最深 ↑</option>
+      <option value="price-asc">特價低→高</option>
+      <option value="price-desc">特價高→低</option>
+      <option value="brand">品牌 A→Z</option>
+      <option value="days-asc">剩餘天數少</option>
+    </select>
+    <button class="primary" onclick="exportCsv()">匯出 CSV</button>
+    <button onclick="toggleFavOnly()">只看收藏</button>
+  </div>
+</header>
+
+<div class="tabs" id="tabs"></div>
+<div class="stats" id="stats"></div>
+
+<div class="table-wrap">
+  <table>
+    <thead>
+      <tr>
+        <th data-k="fav" style="width:36px">★</th>
+        <th data-k="brand">品牌 <span class="sort">↕</span></th>
+        <th data-k="name">商品 <span class="sort">↕</span></th>
+        <th data-k="cat">分類</th>
+        <th data-k="price">特價 <span class="sort">↕</span></th>
+        <th data-k="save">現省 <span class="sort">↕</span></th>
+        <th data-k="orig">原價</th>
+        <th data-k="disc">折扣% <span class="sort">↕</span></th>
+        <th data-k="unit">單位價</th>
+        <th data-k="days">剩餘天 <span class="sort">↕</span></th>
+        <th data-k="note">備註</th>
+      </tr>
+    </thead>
+    <tbody id="tbody"></tbody>
+  </table>
+</div>
+
+<footer>
+  資料僅供參考，實際價格與庫存以好市多賣場／線上為準。<br>
+  本頁為非官方整理 · 可本地收藏 · 支援手機 · 2026 Black Friday<br>
+  完整 700+ 項僅官方賣場與 APP 有完整標示，本頁收錄所有公開媒體已報導品項，後續每日可繼續補上。
+</footer>
+
+<script>
+const END = new Date('2026-12-06T23:59:59+08:00');
+const TODAY = new Date();
+
+function remainDays(endStr) {
+  if (!endStr) return Math.max(0, Math.ceil((END - TODAY) / 86400000));
+  const e = new Date(endStr + 'T23:59:59+08:00');
+  return Math.max(0, Math.ceil((e - TODAY) / 86400000));
+}
+
+const RAW = [
+  {brand:'SAMSUNG', name:'85吋 NEO QLED 顯示器 QA85QN70HAXXZW', cat:'電視', price:72999, orig:95999, save:23000, note:'11/23–12/6', day:'Day1'},
+  {brand:'WHIRLPOOL', name:'17公斤洗衣機 + 16公斤乾衣機組', cat:'洗衣機', price:58499, orig:77999, save:19500, note:'11/23–12/6', day:'Day1'},
+  {brand:'WHIRLPOOL', name:'610公升對開冰箱', cat:'冰箱', price:null, orig:null, save:12800, note:'11/23–12/6', day:'Day1'},
+  {brand:'SHARP', name:'528公升四門對開冰箱', cat:'冰箱', price:34999, orig:44499, save:9500, note:'11/23–12/6', day:'Day1'},
+  {brand:'LG', name:'蒸氣電子衣櫥', cat:'洗衣機', price:29799, orig:37799, save:8000, note:'11/23–12/6', day:'Day1'},
+  {brand:'LG', name:'21公斤滾筒洗衣機', cat:'洗衣機', price:null, orig:null, save:7300, note:'11/23–12/6', day:'Day1'},
+  {brand:'ELECTROLUX', name:'11/7公斤蒸氣滾筒洗脫烘衣機', cat:'洗衣機', price:18999, orig:24999, save:6000, note:'11/23–12/6', day:'Day1'},
+  {brand:'SHARP', name:'13/8公斤滾筒洗脫烘衣機', cat:'洗衣機', price:null, orig:null, save:5600, note:'11/23–12/6', day:'Day1'},
+  {brand:'PHILIPS', name:'保管櫃', cat:'居家', price:null, orig:null, save:5300, note:'11/23–12/6', day:'Day1'},
+  {brand:'ELECTROLUX', name:'346公升 AI 變頻雙門冰箱', cat:'冰箱', price:null, orig:null, save:5100, note:'11/23–12/6', day:'Day1'},
+  {brand:'SEALY', name:'UNIVERSE 系列標準雙人床墊', cat:'居家', price:null, orig:null, save:5000, note:'11/23–12/6', day:'Day1'},
+  {brand:'SOLAR GARD', name:'奈米陶瓷全車貼小型車 VX 系列', cat:'其他', price:null, orig:null, save:4500, note:'11/23–12/6', day:'Day1'},
+  {brand:'DORMAKABA', name:'四合一推拉智慧鎖', cat:'居家', price:null, orig:null, save:4001, note:'11/23–12/6', day:'Day1'},
+  {brand:'ROBOROCK', name:'石頭洗地機 F25 ACE PRO', cat:'清潔家電', price:9799, orig:12399, save:2600, note:'11/23–12/6', day:'Day1'},
+  {brand:'PHILIPS', name:'Sonicare 充電式智能電動護齦牙刷組', cat:'日用品', price:null, orig:null, save:1910, note:'11/23–12/6', day:'Day1'},
+  {brand:'ELECTROLUX', name:'集塵無線吸塵器', cat:'清潔家電', price:11739, orig:16989, save:5250, note:'約69折', day:'Day1'},
+  {brand:'TESCOM', name:'BLDC 吹風機', cat:'日用品', price:1299, orig:1699, save:400, note:'', day:'Day1'},
+  {brand:'ARIEL', name:'極致雙效洗衣精補充包 6入', cat:'日用品', price:689, orig:899, save:210, note:'至11/26', end:'2026-11-26', day:'Day1'},
+  {brand:'CeraVe', name:'長效潤澤修護霜 2入', cat:'日用品', price:939, orig:1199, save:260, note:'', day:'Day1'},
+  {brand:'NEXXUS', name:'礦物純淨蓬鬆洗髮精／潤髮乳', cat:'日用品', price:419, orig:569, save:150, note:'', day:'Day1'},
+  {brand:'滿意寶寶', name:'寶可夢晚安褲 88片', cat:'日用品', price:989, orig:1245, save:256, note:'', day:'Day1'},
+  {brand:'美國頂級', name:'嫩肩里肌真空包（每公斤）', cat:'食品', price:479, orig:609, save:130, note:'限11/23 未稅', end:'2026-11-23', unit:'元/kg', day:'Day1'},
+  {brand:'星巴克', name:'早餐綜合咖啡豆', cat:'食品', price:null, orig:null, save:200, note:'', day:'Day1'},
+  {brand:'老舊金山', name:'拿鐵二合一', cat:'食品', price:null, orig:null, save:160, note:'', day:'Day1'},
+  {brand:'可倫堡', name:'1664 白啤酒', cat:'食品', price:null, orig:null, save:200, note:'', day:'Day1'},
+  {brand:'華元', name:'薯格格酸奶洋蔥口味', cat:'食品', price:null, orig:null, save:34, note:'', day:'Day1'},
+  {brand:'風倍清', name:'浴廁防霉防臭劑', cat:'日用品', price:null, orig:null, save:154, note:'', day:'Day1'},
+  {brand:'舒特膚', name:'極效修復乳', cat:'日用品', price:null, orig:null, save:200, note:'', day:'Day1'},
+  {brand:'蘇菲', name:'輕薄貼合衛生棉 30cm', cat:'日用品', price:null, orig:null, save:150, note:'', day:'Day1'},
+  {brand:'蘇菲', name:'輕薄貼合衛生棉 26cm', cat:'日用品', price:null, orig:null, save:120, note:'', day:'Day1'},
+  {brand:'FRYE', name:'雙人絨毛被三件組', cat:'居家', price:null, orig:null, save:450, note:'', day:'Day1'},
+  {brand:'RECOLTE', name:'有線版電動食物處理機', cat:'廚房家電', price:null, orig:null, save:310, note:'', day:'Day1'},
+  {brand:'CALVIN KLEIN', name:'男刷毛襯衫外套', cat:'其他', price:null, orig:null, save:300, note:'', day:'Day1'},
+  {brand:'ROLLKITCHEN', name:'不鏽鋼盆沙拉蔬菜脫水器', cat:'廚房家電', price:null, orig:null, save:100, note:'', day:'Day1'},
+  {brand:'小白兔', name:'貼式暖暖包 40入', cat:'日用品', price:329, orig:419, save:90, note:'', day:'Day1'},
+  {brand:'IRIS OHYAMA', name:'袋鼠家族手握式暖暖包 60入', cat:'日用品', price:319, orig:399, save:80, note:'', day:'Day1'},
+  {brand:'LAYER ZERO', name:'女性發熱衣', cat:'其他', price:439, orig:559, save:120, note:'', day:'Day1'},
+  {brand:'LAYER ZERO', name:'男性發熱衣', cat:'其他', price:479, orig:599, save:120, note:'', day:'Day1'},
+  {brand:'TCL', name:'98吋 SQD-MiniLED 顯示器 98C8L', cat:'電視', price:null, orig:null, save:29000, note:'線上至11/29', end:'2026-11-29', day:'Day2'},
+  {brand:'HISENSE', name:'4K 三雷射劇院雷射投影機 C2 Ultra', cat:'3C', price:null, orig:null, save:12000, note:'線上至11/29', end:'2026-11-29', day:'Day2'},
+  {brand:'TOSHIBA', name:'75吋 QLED 顯示器 75Z670NT', cat:'電視', price:null, orig:null, save:7700, note:'線上至11/29', end:'2026-11-29', day:'Day2'},
+  {brand:'1.0克拉', name:'圓形鑽石戒指（鉑金 VS2/I）', cat:'珠寶', price:null, orig:null, save:19000, note:'商品#2078692', day:'Day2'},
+  {brand:'0.6克拉', name:'圓形鑽石項鍊（14K白K金 VS2/I）', cat:'珠寶', price:null, orig:null, save:7000, note:'商品#2070172', day:'Day2'},
+  {brand:'BOSCH', name:'60公分獨立式洗碗機 SMS4ITW00X', cat:'廚房家電', price:null, orig:null, save:7140, note:'#154940', day:'Day2'},
+  {brand:'ELECTROLUX', name:'45公分獨立式洗碗機 EFS3060VWB', cat:'廚房家電', price:null, orig:null, save:6000, note:'', day:'Day2'},
+  {brand:'CUISINART', name:'美膳雅 17公升氣炸烤箱 CTOA-130PC3TW', cat:'廚房家電', price:null, orig:null, save:2200, note:'#136546', day:'Day2'},
+  {brand:'PANASONIC', name:'18公升變頻除濕機 F-YV36QNS', cat:'清潔家電', price:null, orig:null, save:1750, note:'', day:'Day2'},
+  {brand:'ORAL-B', name:'iO GUMCARE 微震科技充電式電動牙刷', cat:'日用品', price:null, orig:null, save:1170, note:'', day:'Day2'},
+  {brand:'SIDIZ', name:'人體工學網布辦公椅', cat:'居家', price:null, orig:null, save:900, note:'', day:'Day2'},
+  {brand:'BEURER', name:'床墊型電毯 雙人雙控長效型', cat:'居家', price:null, orig:null, save:610, note:'', day:'Day2'},
+  {brand:'LAIFEN', name:'徠芬高速吹風機 / MINI', cat:'日用品', price:null, orig:null, save:570, note:'', day:'Day2'},
+  {brand:'BIODERMA', name:'貝膚黛瑪舒敏潔膚液組合', cat:'日用品', price:null, orig:null, save:450, note:'', day:'Day2'},
+  {brand:'ZOJIRUSHI', name:'象印不鏽鋼真空保冷保溫瓶', cat:'日用品', price:null, orig:null, save:400, note:'', day:'Day2'},
+  {brand:'M2', name:'美度超能膠原新生組', cat:'日用品', price:null, orig:null, save:400, note:'', day:'Day2'},
+  {brand:"L'OREAL", name:'巴黎萊雅金緻護髮精油組', cat:'日用品', price:null, orig:null, save:180, note:'', day:'Day2'},
+  {brand:'TRYALL', name:'分離豌豆植物蛋白芝麻奶風味', cat:'食品', price:null, orig:null, save:300, note:'', day:'Day2'},
+  {brand:'熟凍', name:'松葉蟹拼盤', cat:'食品', price:null, orig:null, save:500, note:'', day:'Day2'},
+  {brand:'MCLAREN', name:'兒童電動卡丁車', cat:'其他', price:null, orig:null, save:2000, note:'', day:'Day2'},
+  {brand:'ASTON MARTIN', name:'F1 兒童電動玩具車', cat:'其他', price:null, orig:null, save:1500, note:'', day:'Day2'},
+  {brand:'24K黃金', name:'結婚套組幸福約定 2500厘', cat:'貴金屬', price:519999, orig:549999, save:30000, note:'線上限定', day:'線上'},
+  {brand:'SAMSUNG', name:'75吋 Neo QLED 4K AI 量子智慧顯示器', cat:'電視', price:42399, orig:null, save:10600, note:'線上', day:'線上'},
+  {brand:'DYSON', name:'雙錐無纏結吸塵器 V10 SV55-A', cat:'清潔家電', price:12199, orig:null, save:1300, note:'線上', day:'線上'},
+  {brand:'Oasis', name:'Super Pro 桌上型多溫氣泡開飲機', cat:'廚房家電', price:12499, orig:null, save:3200, note:'線上', day:'線上'},
+  {brand:'Don Home', name:'300織萊賽爾素色雙人兩用被套', cat:'居家', price:1359, orig:null, save:340, note:'線上', day:'線上'},
+  {brand:'Gilman Creek', name:'牛皮電動躺椅', cat:'居家', price:15899, orig:null, save:4100, note:'線上', day:'線上'},
+  {brand:'Tefal', name:'法國特福巧變精靈鍋具含蓋7件組', cat:'廚房家電', price:3259, orig:null, save:840, note:'線上', day:'線上'},
+  {brand:'Brave Home', name:'多功能可折疊籃子組4入', cat:'居家', price:799, orig:null, save:200, note:'線上', day:'線上'},
+  {brand:'Hario', name:'V60 手沖咖啡套組', cat:'廚房家電', price:1319, orig:null, save:340, note:'線上', day:'線上'},
+  {brand:'Soundcore', name:'Rave 3S 200W 派對音箱', cat:'3C', price:7999, orig:null, save:2000, note:'線上', day:'線上'},
+];
+
+const DATA = RAW.map((d, i) => {
+  const save = d.save || 0;
+  const orig = d.orig || (d.price && save ? d.price + save : null);
+  const price = d.price != null ? d.price : (orig && save ? orig - save : null);
+  const disc = (orig && save) ? Math.round((save / orig) * 1000) / 10 : null;
+  return {
+    id: i,
+    brand: d.brand,
+    name: d.name,
+    cat: d.cat,
+    price,
+    orig,
+    save,
+    disc,
+    note: d.note || '',
+    day: d.day || '',
+    unit: d.unit || '',
+    end: d.end || null,
+    days: remainDays(d.end),
+    isApple: d.cat === 'Apple',
+    isMetal: d.cat === '貴金屬' || d.cat === '珠寶',
+  };
+});
+
+let favs = new Set(JSON.parse(localStorage.getItem('bf2026fav') || '[]'));
+let currentCat = '全部';
+let favOnly = false;
+let sortKey = 'save';
+let sortDir = -1;
+
+function saveFavs() {
+  localStorage.setItem('bf2026fav', JSON.stringify([...favs]));
+}
+
+function toggleFav(id) {
+  if (favs.has(id)) favs.delete(id); else favs.add(id);
+  saveFavs();
+  render();
+}
+
+function toggleFavOnly() {
+  favOnly = !favOnly;
+  render();
+}
+
+function catOf(d) {
+  if (d.isApple) return 'Apple';
+  if (d.isMetal) return '貴金屬';
+  return d.cat;
+}
+
+function buildTabs() {
+  const counts = {};
+  DATA.forEach(d => {
+    const c = catOf(d);
+    counts[c] = (counts[c] || 0) + 1;
+  });
+  const allCount = DATA.filter(d => !d.isApple && !d.isMetal).length;
+  const order = ['全部', '電視', '洗衣機', '冰箱', '廚房家電', '清潔家電', '3C', '珠寶', '日用品', '食品', '居家', '其他', 'Apple', '貴金屬'];
+  const el = document.getElementById('tabs');
+  el.innerHTML = order.filter(c => c === '全部' || counts[c]).map(c => {
+    const cnt = c === '全部' ? allCount : (counts[c] || 0);
+    return `<div class="tab ${currentCat===c?'active':''}" data-cat="${c}">${c}<span class="count">${cnt}</span></div>`;
+  }).join('');
+  el.querySelectorAll('.tab').forEach(t => t.onclick = () => {
+    currentCat = t.dataset.cat;
+    render();
+  });
+}
+
+function filtered() {
+  let list = DATA.slice();
+  if (currentCat === '全部') {
+    list = list.filter(d => !d.isApple && !d.isMetal);
+  } else if (currentCat === 'Apple') {
+    list = list.filter(d => d.isApple);
+  } else if (currentCat === '貴金屬') {
+    list = list.filter(d => d.isMetal);
+  } else {
+    list = list.filter(d => d.cat === currentCat);
+  }
+  if (favOnly) list = list.filter(d => favs.has(d.id));
+  const q = (document.getElementById('q').value || '').trim().toLowerCase();
+  if (q) list = list.filter(d => (d.brand + d.name + d.note).toLowerCase().includes(q));
+  return list;
+}
+
+function sortList(list) {
+  const k = sortKey;
+  const dir = sortDir;
+  list.sort((a, b) => {
+    let va = a[k], vb = b[k];
+    if (k === 'brand' || k === 'name') {
+      va = (va || '').toLowerCase(); vb = (vb || '').toLowerCase();
+      return dir * (va < vb ? -1 : va > vb ? 1 : 0);
+    }
+    va = va == null ? -Infinity : va;
+    vb = vb == null ? -Infinity : vb;
+    return dir * (va - vb);
+  });
+  return list;
+}
+
+function fmt(n) {
+  if (n == null || isNaN(n)) return '—';
+  return n.toLocaleString('zh-TW');
+}
+
+function render() {
+  buildTabs();
+  let list = sortList(filtered());
+  const tb = document.getElementById('tbody');
+  tb.innerHTML = list.map(d => {
+    const isFav = favs.has(d.id);
+    const discStr = d.disc != null ? d.disc + '%' : '—';
+    const unitStr = d.unit || '';
+    return `<tr>
+      <td class="fav ${isFav?'on':''}" onclick="toggleFav(${d.id})">${isFav?'★':'☆'}</td>
+      <td class="brand">${d.brand}</td>
+      <td class="product">${d.name}</td>
+      <td>${d.cat}</td>
+      <td class="price">${fmt(d.price)}</td>
+      <td><span class="save">−${fmt(d.save)}</span></td>
+      <td class="orig">${fmt(d.orig)}</td>
+      <td class="disc">${discStr}</td>
+      <td class="unit">${unitStr || '—'}</td>
+      <td class="days">${d.days}天</td>
+      <td class="note">${d.note}${d.day ? ' · ' + d.day : ''}</td>
+    </tr>`;
+  }).join('');
+
+  const totalSave = list.reduce((s, d) => s + (d.save || 0), 0);
+  document.getElementById('stats').innerHTML = `
+    <span>顯示 <b>${list.length}</b> 件</span>
+    <span>累計現省約 <b>${fmt(totalSave)}</b> 元</span>
+    <span>收藏 <b>${favs.size}</b> 件</span>
+    <span>活動剩餘約 <b>${remainDays()}</b> 天</span>
+  `;
+}
+
+document.getElementById('q').oninput = () => render();
+document.getElementById('sort').onchange = (e) => {
+  const v = e.target.value;
+  if (v === 'save-desc') { sortKey = 'save'; sortDir = -1; }
+  else if (v === 'disc-desc') { sortKey = 'disc'; sortDir = -1; }
+  else if (v === 'price-asc') { sortKey = 'price'; sortDir = 1; }
+  else if (v === 'price-desc') { sortKey = 'price'; sortDir = -1; }
+  else if (v === 'brand') { sortKey = 'brand'; sortDir = 1; }
+  else if (v === 'days-asc') { sortKey = 'days'; sortDir = 1; }
+  render();
+};
+
+document.querySelectorAll('th[data-k]').forEach(th => {
+  th.onclick = () => {
+    const k = th.dataset.k;
+    if (k === 'fav') return;
+    if (sortKey === k) sortDir *= -1;
+    else { sortKey = k; sortDir = (k === 'brand' || k === 'name') ? 1 : -1; }
+    document.querySelectorAll('th').forEach(t => t.classList.remove('sorted'));
+    th.classList.add('sorted');
+    render();
+  };
+});
+
+function exportCsv() {
+  const list = sortList(filtered());
+  const header = ['品牌','商品','分類','特價','現省','原價','折扣%','單位價','剩餘天','備註','檔期'];
+  const rows = list.map(d => [
+    d.brand, d.name, d.cat, d.price ?? '', d.save, d.orig ?? '', d.disc ?? '',
+    d.unit || '', d.days, d.note, d.day
+  ].map(c => `"${String(c).replace(/"/g,'""')}"`).join(','));
+  const bom = '\uFEFF';
+  const blob = new Blob([bom + header.join(',') + '\n' + rows.join('\n')], {type:'text/csv;charset=utf-8'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = `costco-blackfriday-2026-${new Date().toISOString().slice(0,10)}.csv`;
+  a.click();
+}
+
+render();
+</script>
+</body>
+</html>
