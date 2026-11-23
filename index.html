@@ -2,7 +2,7 @@
 <html lang="zh-Hant">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
 <title>好市多 2026 黑色購物節特價總整理 | 11/23–12/6</title>
 <style>
 :root {
@@ -120,6 +120,52 @@ footer {
   h1 { font-size: 1rem; }
   th, td { padding: 8px 6px; font-size: 0.78rem; }
   .product { max-width: 200px; }
+}
+/* ========== iPad / Tablet optimized ========== */
+@media (min-width: 768px) and (max-width: 1366px) {
+  body { font-size: 16px; }
+  header { padding: 18px 24px 16px; }
+  h1 { font-size: 1.4rem; }
+  .badge { font-size: 0.85rem; padding: 5px 12px; }
+  .info-bar { font-size: 0.9rem; gap: 12px 20px; }
+  .controls { gap: 12px; margin-top: 14px; }
+  input[type="search"] {
+    min-width: 220px; max-width: 360px;
+    padding: 12px 16px; font-size: 1rem; border-radius: 10px;
+  }
+  select, button {
+    padding: 12px 16px; font-size: 0.95rem; border-radius: 10px;
+    min-height: 44px;
+  }
+  .tabs { gap: 10px; margin: 16px 0 12px; padding: 0 20px; }
+  .tab {
+    padding: 10px 16px; font-size: 0.95rem; border-radius: 10px;
+    min-height: 44px; display: inline-flex; align-items: center;
+  }
+  .table-wrap { padding: 0 16px 48px; }
+  table { font-size: 0.95rem; min-width: 1000px; }
+  th, td { padding: 14px 12px; }
+  th { font-size: 0.9rem; }
+  td.product { max-width: 340px; min-width: 220px; line-height: 1.4; }
+  .fav { font-size: 1.35rem; padding: 4px; }
+  .price { font-size: 1.05rem; }
+  .save { padding: 4px 8px; font-size: 0.95rem; }
+  .stats { font-size: 0.95rem; padding: 12px 20px; gap: 14px 24px; }
+  footer { padding: 28px 20px; font-size: 0.85rem; }
+}
+@media (min-width: 1024px) and (orientation: landscape) {
+  .table-wrap { padding: 0 24px 48px; }
+  table { min-width: 1100px; }
+  td.product { max-width: 400px; }
+  .controls { justify-content: flex-start; }
+}
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+  table { min-width: 920px; }
+  td.product { max-width: 260px; }
+}
+@media (pointer: coarse) {
+  .tab, button, select, .fav { min-height: 44px; }
+  th { padding-top: 14px; padding-bottom: 14px; }
 }
 </style>
 </head>
