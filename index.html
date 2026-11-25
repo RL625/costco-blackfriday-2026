@@ -26,11 +26,25 @@ body {
   line-height: 1.45;
   min-height: 100vh;
 }
+/* site nav */
+.site-nav{
+  display:flex;flex-wrap:wrap;gap:8px;justify-content:center;align-items:center;
+  padding:10px 12px;background:#12151b;border-bottom:1px solid #2a2f3a;
+  position:sticky;top:0;z-index:200;
+}
+.site-nav a{
+  display:inline-flex;align-items:center;gap:4px;
+  padding:8px 14px;border-radius:999px;font-size:.88rem;font-weight:600;
+  text-decoration:none;color:#9aa0a6;border:1px solid #2a2f3a;background:#1a1d24;
+  min-height:40px;
+}
+.site-nav a:hover{border-color:#f59e0b;color:#f59e0b}
+.site-nav a.on{background:#2a2110;border-color:#f59e0b;color:#fbbf24}
 header {
   background: linear-gradient(135deg, #1a1208 0%, #0f1115 60%);
   border-bottom: 1px solid var(--border);
   padding: 14px 16px 12px;
-  position: sticky; top: 0; z-index: 100;
+  position: sticky; top: 52px; z-index: 100;
 }
 .header-top {
   display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px;
@@ -47,7 +61,7 @@ h1 {
   background: #2a2110; color: var(--accent); border: 1px solid #4a3a18;
 }
 .badge.green { background: #0f2a1f; color: var(--green); border-color: #1a4a35; }
-.badge.blue { background: #0f1f2a; color: var(--blue); border-color: #1a3a4a; }
+.badge.blue { background: #0f1f2a; color: var(--blue); border-color: #1color: #1a3a4a; }
 .info-bar {
   margin-top: 8px; font-size: 0.78rem; color: var(--muted);
   display: flex; flex-wrap: wrap; gap: 8px 14px;
@@ -121,7 +135,6 @@ footer {
   th, td { padding: 8px 6px; font-size: 0.78rem; }
   .product { max-width: 200px; }
 }
-/* ========== iPad / Tablet optimized ========== */
 @media (min-width: 768px) and (max-width: 1366px) {
   body { font-size: 16px; }
   header { padding: 18px 24px 16px; }
@@ -152,24 +165,27 @@ footer {
   .save { padding: 4px 8px; font-size: 0.95rem; }
   .stats { font-size: 0.95rem; padding: 12px 20px; gap: 14px 24px; }
   footer { padding: 28px 20px; font-size: 0.85rem; }
+  .site-nav{padding:12px 20px;gap:10px}
+  .site-nav a{padding:10px 18px;font-size:.95rem;min-height:44px;border-radius:12px}
 }
 @media (min-width: 1024px) and (orientation: landscape) {
   .table-wrap { padding: 0 24px 48px; }
   table { min-width: 1100px; }
   td.product { max-width: 400px; }
-  .controls { justify-content: flex-start; }
-}
-@media (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
-  table { min-width: 920px; }
-  td.product { max-width: 260px; }
 }
 @media (pointer: coarse) {
-  .tab, button, select, .fav { min-height: 44px; }
+  .tab, button, select, .fav, .site-nav a { min-height: 44px; }
   th { padding-top: 14px; padding-bottom: 14px; }
 }
 </style>
 </head>
 <body>
+<nav class="site-nav" id="siteNav">
+  <a href="https://rl625.github.io/gold-costco-app/" data-page="gold">🥇 黃金</a>
+  <a href="https://rl625.github.io/gold-costco-app/btc/" data-page="btc">₿ BTC</a>
+  <a href="https://rl625.github.io/gold-costco-app/deals/" data-page="deals">🛒 好市多特價</a>
+  <a href="https://rl625.github.io/costco-blackfriday-2026/" data-page="bf" class="on">🔥 黑五2026</a>
+</nav>
 <header>
   <div class="header-top">
     <h1>🛒 好市多 2026 黑色購物節</h1>
@@ -232,13 +248,11 @@ footer {
 <script>
 const END = new Date('2026-12-06T23:59:59+08:00');
 const TODAY = new Date();
-
 function remainDays(endStr) {
   if (!endStr) return Math.max(0, Math.ceil((END - TODAY) / 86400000));
   const e = new Date(endStr + 'T23:59:59+08:00');
   return Math.max(0, Math.ceil((e - TODAY) / 86400000));
 }
-
 const RAW = [
   {brand:'SAMSUNG', name:'85吋 NEO QLED 顯示器 QA85QN70HAXXZW', cat:'電視', price:72999, orig:95999, save:23000, note:'11/23–12/6', day:'Day1'},
   {brand:'WHIRLPOOL', name:'17公斤洗衣機 + 16公斤乾衣機組', cat:'洗衣機', price:58499, orig:77999, save:19500, note:'11/23–12/6', day:'Day1'},
@@ -310,64 +324,30 @@ const RAW = [
   {brand:'Hario', name:'V60 手沖咖啡套組', cat:'廚房家電', price:1319, orig:null, save:340, note:'線上', day:'線上'},
   {brand:'Soundcore', name:'Rave 3S 200W 派對音箱', cat:'3C', price:7999, orig:null, save:2000, note:'線上', day:'線上'},
 ];
-
 const DATA = RAW.map((d, i) => {
   const save = d.save || 0;
   const orig = d.orig || (d.price && save ? d.price + save : null);
   const price = d.price != null ? d.price : (orig && save ? orig - save : null);
   const disc = (orig && save) ? Math.round((save / orig) * 1000) / 10 : null;
   return {
-    id: i,
-    brand: d.brand,
-    name: d.name,
-    cat: d.cat,
-    price,
-    orig,
-    save,
-    disc,
-    note: d.note || '',
-    day: d.day || '',
-    unit: d.unit || '',
-    end: d.end || null,
-    days: remainDays(d.end),
-    isApple: d.cat === 'Apple',
+    id: i, brand: d.brand, name: d.name, cat: d.cat, price, orig, save, disc,
+    note: d.note || '', day: d.day || '', unit: d.unit || '', end: d.end || null,
+    days: remainDays(d.end), isApple: d.cat === 'Apple',
     isMetal: d.cat === '貴金屬' || d.cat === '珠寶',
   };
 });
-
 let favs = new Set(JSON.parse(localStorage.getItem('bf2026fav') || '[]'));
 let currentCat = '全部';
 let favOnly = false;
 let sortKey = 'save';
 let sortDir = -1;
-
-function saveFavs() {
-  localStorage.setItem('bf2026fav', JSON.stringify([...favs]));
-}
-
-function toggleFav(id) {
-  if (favs.has(id)) favs.delete(id); else favs.add(id);
-  saveFavs();
-  render();
-}
-
-function toggleFavOnly() {
-  favOnly = !favOnly;
-  render();
-}
-
-function catOf(d) {
-  if (d.isApple) return 'Apple';
-  if (d.isMetal) return '貴金屬';
-  return d.cat;
-}
-
+function saveFavs() { localStorage.setItem('bf2026fav', JSON.stringify([...favs])); }
+function toggleFav(id) { if (favs.has(id)) favs.delete(id); else favs.add(id); saveFavs(); render(); }
+function toggleFavOnly() { favOnly = !favOnly; render(); }
+function catOf(d) { if (d.isApple) return 'Apple'; if (d.isMetal) return '貴金屬'; return d.cat; }
 function buildTabs() {
   const counts = {};
-  DATA.forEach(d => {
-    const c = catOf(d);
-    counts[c] = (counts[c] || 0) + 1;
-  });
+  DATA.forEach(d => { const c = catOf(d); counts[c] = (counts[c] || 0) + 1; });
   const allCount = DATA.filter(d => !d.isApple && !d.isMetal).length;
   const order = ['全部', '電視', '洗衣機', '冰箱', '廚房家電', '清潔家電', '3C', '珠寶', '日用品', '食品', '居家', '其他', 'Apple', '貴金屬'];
   const el = document.getElementById('tabs');
@@ -375,50 +355,33 @@ function buildTabs() {
     const cnt = c === '全部' ? allCount : (counts[c] || 0);
     return `<div class="tab ${currentCat===c?'active':''}" data-cat="${c}">${c}<span class="count">${cnt}</span></div>`;
   }).join('');
-  el.querySelectorAll('.tab').forEach(t => t.onclick = () => {
-    currentCat = t.dataset.cat;
-    render();
-  });
+  el.querySelectorAll('.tab').forEach(t => t.onclick = () => { currentCat = t.dataset.cat; render(); });
 }
-
 function filtered() {
   let list = DATA.slice();
-  if (currentCat === '全部') {
-    list = list.filter(d => !d.isApple && !d.isMetal);
-  } else if (currentCat === 'Apple') {
-    list = list.filter(d => d.isApple);
-  } else if (currentCat === '貴金屬') {
-    list = list.filter(d => d.isMetal);
-  } else {
-    list = list.filter(d => d.cat === currentCat);
-  }
+  if (currentCat === '全部') list = list.filter(d => !d.isApple && !d.isMetal);
+  else if (currentCat === 'Apple') list = list.filter(d => d.isApple);
+  else if (currentCat === '貴金屬') list = list.filter(d => d.isMetal);
+  else list = list.filter(d => d.cat === currentCat);
   if (favOnly) list = list.filter(d => favs.has(d.id));
   const q = (document.getElementById('q').value || '').trim().toLowerCase();
   if (q) list = list.filter(d => (d.brand + d.name + d.note).toLowerCase().includes(q));
   return list;
 }
-
 function sortList(list) {
-  const k = sortKey;
-  const dir = sortDir;
+  const k = sortKey, dir = sortDir;
   list.sort((a, b) => {
     let va = a[k], vb = b[k];
     if (k === 'brand' || k === 'name') {
       va = (va || '').toLowerCase(); vb = (vb || '').toLowerCase();
       return dir * (va < vb ? -1 : va > vb ? 1 : 0);
     }
-    va = va == null ? -Infinity : va;
-    vb = vb == null ? -Infinity : vb;
+    va = va == null ? -Infinity : va; vb = vb == null ? -Infinity : vb;
     return dir * (va - vb);
   });
   return list;
 }
-
-function fmt(n) {
-  if (n == null || isNaN(n)) return '—';
-  return n.toLocaleString('zh-TW');
-}
-
+function fmt(n) { if (n == null || isNaN(n)) return '—'; return n.toLocaleString('zh-TW'); }
 function render() {
   buildTabs();
   let list = sortList(filtered());
@@ -426,7 +389,6 @@ function render() {
   tb.innerHTML = list.map(d => {
     const isFav = favs.has(d.id);
     const discStr = d.disc != null ? d.disc + '%' : '—';
-    const unitStr = d.unit || '';
     return `<tr>
       <td class="fav ${isFav?'on':''}" onclick="toggleFav(${d.id})">${isFav?'★':'☆'}</td>
       <td class="brand">${d.brand}</td>
@@ -436,21 +398,18 @@ function render() {
       <td><span class="save">−${fmt(d.save)}</span></td>
       <td class="orig">${fmt(d.orig)}</td>
       <td class="disc">${discStr}</td>
-      <td class="unit">${unitStr || '—'}</td>
+      <td class="unit">${d.unit || '—'}</td>
       <td class="days">${d.days}天</td>
       <td class="note">${d.note}${d.day ? ' · ' + d.day : ''}</td>
     </tr>`;
   }).join('');
-
   const totalSave = list.reduce((s, d) => s + (d.save || 0), 0);
   document.getElementById('stats').innerHTML = `
     <span>顯示 <b>${list.length}</b> 件</span>
     <span>累計現省約 <b>${fmt(totalSave)}</b> 元</span>
     <span>收藏 <b>${favs.size}</b> 件</span>
-    <span>活動剩餘約 <b>${remainDays()}</b> 天</span>
-  `;
+    <span>活動剩餘約 <b>${remainDays()}</b> 天</span>`;
 }
-
 document.getElementById('q').oninput = () => render();
 document.getElementById('sort').onchange = (e) => {
   const v = e.target.value;
@@ -462,7 +421,6 @@ document.getElementById('sort').onchange = (e) => {
   else if (v === 'days-asc') { sortKey = 'days'; sortDir = 1; }
   render();
 };
-
 document.querySelectorAll('th[data-k]').forEach(th => {
   th.onclick = () => {
     const k = th.dataset.k;
@@ -474,7 +432,6 @@ document.querySelectorAll('th[data-k]').forEach(th => {
     render();
   };
 });
-
 function exportCsv() {
   const list = sortList(filtered());
   const header = ['品牌','商品','分類','特價','現省','原價','折扣%','單位價','剩餘天','備註','檔期'];
@@ -489,7 +446,6 @@ function exportCsv() {
   a.download = `costco-blackfriday-2026-${new Date().toISOString().slice(0,10)}.csv`;
   a.click();
 }
-
 render();
 </script>
 </body>
