@@ -6,49 +6,54 @@
 <title>好市多 2026 黑色購物節特價總整理 | 11/23–12/6</title>
 <style>
 :root {
-  --bg: #0f1115;
-  --card: #1a1d24;
-  --border: #2a2f3a;
-  --text: #e8eaed;
-  --muted: #9aa0a6;
-  --accent: #f59e0b;
-  --green: #34d399;
-  --red: #f87171;
-  --blue: #60a5fa;
-  --purple: #a78bfa;
-  --header: #12151b;
+  --bg: #0f1115; --card: #1a1d24; --border: #2a2f3a; --text: #e8eaed; --muted: #9aa0a6;
+  --accent: #f59e0b; --green: #34d399; --red: #f87171; --blue: #60a5fa; --purple: #a78bfa; --header: #12151b;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", "PingFang TC", sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  line-height: 1.45;
-  min-height: 100vh;
+  background: var(--bg); color: var(--text); line-height: 1.45; min-height: 100vh;
+  padding-right: 72px;
 }
-.site-nav{
-  display:flex;flex-wrap:wrap;gap:8px;justify-content:center;align-items:center;
-  padding:10px 12px;background:#12151b;border-bottom:1px solid #2a2f3a;
-  position:sticky;top:0;z-index:200;
+.side-switch{
+  position:fixed; right:12px; top:50%; transform:translateY(-50%);
+  z-index:9999; display:flex; flex-direction:column; gap:8px;
+  padding:10px 8px; border-radius:16px;
+  background:rgba(18,21,27,.92); border:1px solid #2a2f3a;
+  backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
+  box-shadow:0 8px 28px rgba(0,0,0,.45);
 }
-.site-nav a{
-  display:inline-flex;align-items:center;gap:4px;
-  padding:8px 14px;border-radius:999px;font-size:.88rem;font-weight:600;
-  text-decoration:none;color:#9aa0a6;border:1px solid #2a2f3a;background:#1a1d24;
-  min-height:40px;
+.side-switch a{
+  display:flex; align-items:center; justify-content:center;
+  width:52px; min-height:52px; border-radius:12px;
+  text-decoration:none; font-size:1.25rem; line-height:1;
+  color:#9aa0a6; background:#1a1d24; border:1px solid #2a2f3a;
+  transition:all .15s ease;
 }
-.site-nav a:hover{border-color:#f59e0b;color:#f59e0b}
-.site-nav a.on{background:#2a2110;border-color:#f59e0b;color:#fbbf24}
+.side-switch a span.lbl{ display:none; font-size:.72rem; font-weight:600; margin-top:2px; }
+.side-switch a:hover, .side-switch a:focus{ border-color:#f59e0b; color:#fbbf24; transform:scale(1.06); }
+.side-switch a.on{
+  background:#2a2110; border-color:#f59e0b; color:#fbbf24;
+  box-shadow:0 0 0 2px rgba(245,158,11,.25);
+}
+@media (min-width:900px){
+  .side-switch{ padding:12px 10px; }
+  .side-switch a{ width:auto; min-width:72px; flex-direction:column; gap:2px; padding:10px 12px; font-size:1.15rem; }
+  .side-switch a span.lbl{ display:block; }
+  body{ padding-right:100px; }
+}
+@media (max-width:640px){
+  .side-switch{ right:6px; padding:8px 6px; gap:6px; }
+  .side-switch a{ width:44px; min-height:44px; font-size:1.1rem; border-radius:10px; }
+  body{ padding-right:56px; }
+}
 header {
   background: linear-gradient(135deg, #1a1208 0%, #0f1115 60%);
   border-bottom: 1px solid var(--border);
   padding: 14px 16px 12px;
-  position: sticky; top: 52px; z-index: 100;
+  position: sticky; top: 0; z-index: 100;
 }
-.header-top {
-  display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px;
-  justify-content: space-between;
-}
+.header-top { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; justify-content: space-between; }
 h1 {
   font-size: 1.15rem; font-weight: 700;
   background: linear-gradient(90deg, #fbbf24, #f59e0b);
@@ -61,13 +66,8 @@ h1 {
 }
 .badge.green { background: #0f2a1f; color: var(--green); border-color: #1a4a35; }
 .badge.blue { background: #0f1f2a; color: var(--blue); border-color: #1a3a4a; }
-.info-bar {
-  margin-top: 8px; font-size: 0.78rem; color: var(--muted);
-  display: flex; flex-wrap: wrap; gap: 8px 14px;
-}
-.controls {
-  display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; align-items: center;
-}
+.info-bar { margin-top: 8px; font-size: 0.78rem; color: var(--muted); display: flex; flex-wrap: wrap; gap: 8px 14px; }
+.controls { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; align-items: center; }
 input[type="search"] {
   flex: 1; min-width: 140px; max-width: 280px;
   background: var(--card); border: 1px solid var(--border);
@@ -79,26 +79,16 @@ select, button {
 }
 button:hover, select:hover { border-color: var(--accent); }
 button.primary { background: #3b2a0a; border-color: var(--accent); color: var(--accent); }
-.tabs {
-  display: flex; flex-wrap: wrap; gap: 6px; margin: 12px 0 8px; padding: 0 16px;
-}
+.tabs { display: flex; flex-wrap: wrap; gap: 6px; margin: 12px 0 8px; padding: 0 16px; }
 .tab {
   padding: 6px 12px; border-radius: 8px; font-size: 0.82rem;
-  background: var(--card); border: 1px solid var(--border); cursor: pointer;
-  color: var(--muted);
+  background: var(--card); border: 1px solid var(--border); cursor: pointer; color: var(--muted);
 }
 .tab.active { background: #2a2110; border-color: var(--accent); color: var(--accent); font-weight: 600; }
 .tab .count { font-size: 0.7rem; opacity: 0.8; margin-left: 4px; }
-.table-wrap {
-  overflow-x: auto; padding: 0 8px 40px; -webkit-overflow-scrolling: touch;
-}
-table {
-  width: 100%; border-collapse: collapse; font-size: 0.84rem; min-width: 980px;
-}
-th, td {
-  padding: 10px 8px; text-align: left; border-bottom: 1px solid var(--border);
-  white-space: nowrap;
-}
+.table-wrap { overflow-x: auto; padding: 0 8px 40px; -webkit-overflow-scrolling: touch; }
+table { width: 100%; border-collapse: collapse; font-size: 0.84rem; min-width: 980px; }
+th, td { padding: 10px 8px; text-align: left; border-bottom: 1px solid var(--border); white-space: nowrap; }
 th {
   background: var(--header); position: sticky; top: 0; z-index: 10;
   font-weight: 600; color: var(--muted); cursor: pointer; user-select: none;
@@ -108,10 +98,7 @@ th .sort { opacity: 0.4; font-size: 0.7rem; }
 th.sorted .sort { opacity: 1; color: var(--accent); }
 td.product { white-space: normal; max-width: 280px; min-width: 180px; }
 .brand { color: var(--blue); font-weight: 500; }
-.save {
-  font-weight: 700; color: var(--green);
-  background: #0f2a1f; padding: 2px 6px; border-radius: 4px;
-}
+.save { font-weight: 700; color: var(--green); background: #0f2a1f; padding: 2px 6px; border-radius: 4px; }
 .disc { color: var(--accent); font-weight: 600; }
 .orig { color: var(--muted); text-decoration: line-through; font-size: 0.8rem; }
 .price { font-weight: 700; font-size: 0.95rem; }
@@ -122,18 +109,11 @@ td.product { white-space: normal; max-width: 280px; min-width: 180px; }
 .note { font-size: 0.72rem; color: var(--muted); max-width: 140px; white-space: normal; }
 .buy-btn{
   display:inline-block;padding:4px 10px;background:#0a84ff;color:#fff!important;
-  border-radius:6px;text-decoration:none;font-size:.75rem;font-weight:600;
-  white-space:nowrap;
+  border-radius:6px;text-decoration:none;font-size:.75rem;font-weight:600;white-space:nowrap;
 }
 .buy-btn:hover{background:#0066cc}
-footer {
-  text-align: center; padding: 20px 16px; font-size: 0.75rem; color: var(--muted);
-  border-top: 1px solid var(--border);
-}
-.stats {
-  display: flex; flex-wrap: wrap; gap: 10px 18px; padding: 8px 16px;
-  font-size: 0.8rem; color: var(--muted);
-}
+footer { text-align: center; padding: 20px 16px; font-size: 0.75rem; color: var(--muted); border-top: 1px solid var(--border); }
+.stats { display: flex; flex-wrap: wrap; gap: 10px 18px; padding: 8px 16px; font-size: 0.8rem; color: var(--muted); }
 .stats b { color: var(--text); }
 @media (max-width: 640px) {
   h1 { font-size: 1rem; }
@@ -147,50 +127,33 @@ footer {
   .badge { font-size: 0.85rem; padding: 5px 12px; }
   .info-bar { font-size: 0.9rem; gap: 12px 20px; }
   .controls { gap: 12px; margin-top: 14px; }
-  input[type="search"] {
-    min-width: 220px; max-width: 360px;
-    padding: 12px 16px; font-size: 1rem; border-radius: 10px;
-  }
-  select, button {
-    padding: 12px 16px; font-size: 0.95rem; border-radius: 10px;
-    min-height: 44px;
-  }
+  input[type="search"] { min-width: 220px; max-width: 360px; padding: 12px 16px; font-size: 1rem; border-radius: 10px; }
+  select, button { padding: 12px 16px; font-size: 0.95rem; border-radius: 10px; min-height: 44px; }
   .tabs { gap: 10px; margin: 16px 0 12px; padding: 0 20px; }
-  .tab {
-    padding: 10px 16px; font-size: 0.95rem; border-radius: 10px;
-    min-height: 44px; display: inline-flex; align-items: center;
-  }
+  .tab { padding: 10px 16px; font-size: 0.95rem; border-radius: 10px; min-height: 44px; display: inline-flex; align-items: center; }
   .table-wrap { padding: 0 16px 48px; }
   table { font-size: 0.95rem; min-width: 1000px; }
   th, td { padding: 14px 12px; }
-  th { font-size: 0.9rem; }
   td.product { max-width: 340px; min-width: 220px; line-height: 1.4; }
   .fav { font-size: 1.35rem; padding: 4px; }
   .price { font-size: 1.05rem; }
   .save { padding: 4px 8px; font-size: 0.95rem; }
   .stats { font-size: 0.95rem; padding: 12px 20px; gap: 14px 24px; }
   footer { padding: 28px 20px; font-size: 0.85rem; }
-  .site-nav{padding:12px 20px;gap:10px}
-  .site-nav a{padding:10px 18px;font-size:.95rem;min-height:44px;border-radius:12px}
   .buy-btn{padding:8px 14px;font-size:.85rem;min-height:40px;display:inline-flex;align-items:center}
 }
-@media (min-width: 1024px) and (orientation: landscape) {
-  .table-wrap { padding: 0 24px 48px; }
-  table { min-width: 1100px; }
-  td.product { max-width: 400px; }
-}
 @media (pointer: coarse) {
-  .tab, button, select, .fav, .site-nav a { min-height: 44px; }
+  .tab, button, select, .fav { min-height: 44px; }
   th { padding-top: 14px; padding-bottom: 14px; }
 }
 </style>
 </head>
 <body>
-<nav class="site-nav" id="siteNav">
-  <a href="https://rl625.github.io/gold-costco-app/" data-page="gold">🥇 黃金</a>
-  <a href="https://rl625.github.io/gold-costco-app/btc/" data-page="btc">₿ BTC</a>
-  <a href="https://rl625.github.io/gold-costco-app/deals/" data-page="deals">🛒 好市多特價</a>
-  <a href="https://rl625.github.io/costco-blackfriday-2026/" data-page="bf" class="on">🔥 黑五2026</a>
+<nav class="side-switch" id="sideSwitch" aria-label="頁面切換">
+  <a href="https://rl625.github.io/gold-costco-app/" title="黃金" data-page="gold">🥇<span class="lbl">黃金</span></a>
+  <a href="https://rl625.github.io/gold-costco-app/btc/" title="BTC" data-page="btc">₿<span class="lbl">BTC</span></a>
+  <a href="https://rl625.github.io/gold-costco-app/deals/" title="特價" data-page="deals">🛒<span class="lbl">特價</span></a>
+  <a href="https://rl625.github.io/costco-blackfriday-2026/" class="on" title="黑五" data-page="bf">🔥<span class="lbl">黑五</span></a>
 </nav>
 <header>
   <div class="header-top">
@@ -220,10 +183,8 @@ footer {
     <button onclick="toggleFavOnly()">只看收藏</button>
   </div>
 </header>
-
 <div class="tabs" id="tabs"></div>
 <div class="stats" id="stats"></div>
-
 <div class="table-wrap">
   <table>
     <thead>
@@ -245,13 +206,11 @@ footer {
     <tbody id="tbody"></tbody>
   </table>
 </div>
-
 <footer>
   資料僅供參考，實際價格與庫存以好市多賣場／線上為準。<br>
   本頁為非官方整理 · 可本地收藏 · 支援手機 · 2026 Black Friday<br>
   完整 700+ 項僅官方賣場與 APP 有完整標示，本頁收錄所有公開媒體已報導品項，後續每日可繼續補上。
 </footer>
-
 <script>
 const END = new Date('2026-12-06T23:59:59+08:00');
 const TODAY = new Date();
@@ -459,16 +418,6 @@ function exportCsv() {
   a.click();
 }
 render();
-(function(){
-  var path = location.pathname || '';
-  var page = 'gold';
-  if (path.indexOf('/btc') >= 0) page = 'btc';
-  else if (path.indexOf('/deals') >= 0) page = 'deals';
-  else if (path.indexOf('blackfriday') >= 0 || path.indexOf('costco-blackfriday') >= 0) page = 'bf';
-  document.querySelectorAll('#siteNav a').forEach(function(a){
-    if (a.getAttribute('data-page') === page) a.classList.add('on');
-  });
-})();
 </script>
 </body>
 </html>
